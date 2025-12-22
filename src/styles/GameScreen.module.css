@@ -120,29 +120,31 @@
     opacity: 0.7;
 }
 
-.difficultyBtn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
-}
+@media (hover: hover) {
+    .difficultyBtn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+    }
 
-.diffBeginner:hover {
-    border-color: var(--color-neon-cyan);
-    color: var(--color-neon-cyan);
-}
+    .diffBeginner:hover {
+        border-color: var(--color-neon-cyan);
+        color: var(--color-neon-cyan);
+    }
 
-.diffIntermediate:hover {
-    border-color: var(--color-neon-yellow);
-    color: var(--color-neon-yellow);
-}
+    .diffIntermediate:hover {
+        border-color: var(--color-neon-yellow);
+        color: var(--color-neon-yellow);
+    }
 
-.diffAdvanced:hover {
-    border-color: var(--color-neon-magenta);
-    color: var(--color-neon-magenta);
-}
+    .diffAdvanced:hover {
+        border-color: var(--color-neon-magenta);
+        color: var(--color-neon-magenta);
+    }
 
-.diffMaster:hover {
-    border-color: var(--color-neon-purple);
-    color: var(--color-neon-purple);
+    .diffMaster:hover {
+        border-color: var(--color-neon-purple);
+        color: var(--color-neon-purple);
+    }
 }
 
 /* Game Wrapper - 16:9 aspect ratio */
@@ -252,10 +254,12 @@
     pointer-events: auto;
 }
 
-.pauseBtn:hover {
-    border-color: var(--color-neon-cyan);
-    color: var(--color-neon-cyan);
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+@media (hover: hover) {
+    .pauseBtn:hover {
+        border-color: var(--color-neon-cyan);
+        color: var(--color-neon-cyan);
+        box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    }
 }
 
 /* Condition Box - Top of game area */
@@ -366,11 +370,13 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.card:hover {
-    transform: translateY(-10px) scale(1.05);
-    border-color: var(--color-neon-cyan);
-    box-shadow: 0 20px 40px rgba(0, 243, 255, 0.2);
-    background: rgba(255, 255, 255, 0.1);
+@media (hover: hover) {
+    .card:hover {
+        transform: translateY(-10px) scale(1.05);
+        border-color: var(--color-neon-cyan);
+        box-shadow: 0 20px 40px rgba(0, 243, 255, 0.2);
+        background: rgba(255, 255, 255, 0.1);
+    }
 }
 
 .card:active {
@@ -559,20 +565,18 @@
     letter-spacing: 2px;
 }
 
-.startButton:hover {
-    background: var(--color-neon-cyan);
-    color: #000;
-    box-shadow: 0 0 30px var(--color-neon-cyan);
-}
+@media (hover: hover) {
+    .startButton:hover {
+        background: var(--color-neon-cyan);
+        color: #000;
+        box-shadow: 0 0 30px var(--color-neon-cyan);
+    }
 
-.backButton {
-    border-color: var(--color-neon-magenta);
-}
-
-.backButton:hover {
-    background: var(--color-neon-magenta);
-    color: #000;
-    box-shadow: 0 0 30px var(--color-neon-magenta);
+    .backButton:hover {
+        background: var(--color-neon-magenta);
+        color: #000;
+        box-shadow: 0 0 30px var(--color-neon-magenta);
+    }
 }
 
 @keyframes fadeIn {
@@ -646,11 +650,166 @@
 }
 
 @keyframes countdownRotate {
-    from {
-        transform: rotate(0deg);
-    }
-
     to {
         transform: rotate(360deg);
+    }
+}
+
+/* --- Mobile / Responsive Styles --- */
+
+/* Tablet & Mobile (Portrait) */
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+    .container {
+        height: 100vh;
+        height: 100dvh;
+        /* Dynamic viewport height for mobile browsers */
+        overflow: hidden;
+    }
+
+    .gameWrapper {
+        /* Reset persistent aspect ratio */
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: none;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    /* 1. Top Section: Info (Score/Timer/Level) */
+    .leftSidebar {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        padding: 5px;
+        order: 1;
+        /* First */
+        gap: 10px;
+    }
+
+    .statItem {
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .statLabel {
+        font-size: 0.8rem;
+        margin-bottom: 2px;
+    }
+
+    .statValue {
+        font-size: 1.5rem;
+    }
+
+    /* Timer needs to be visible relative to the new layout */
+    .timer {
+        position: static;
+        /* Remove absolute positioning */
+        font-size: 1.5rem;
+        margin: 0;
+        text-align: center;
+    }
+
+    /* 2. Middle Section: Game Area */
+    .gameArea {
+        order: 2;
+        width: 100%;
+        flex: 1;
+        /* Fill remaining space */
+        aspect-ratio: auto;
+        /* Remove fixed aspect ratio */
+        padding: 15px;
+        margin: 0;
+        max-height: 65vh;
+        /* Prevent it from pushing bottom elements off */
+    }
+
+    .conditionBox {
+        font-size: 1.5rem;
+        padding: 10px 20px;
+        margin-bottom: 15px;
+        width: 90%;
+    }
+
+    /* Cards Grid adjustment */
+    .cardsContainer {
+        gap: 15px;
+        width: 100%;
+        height: auto;
+        align-content: center;
+    }
+
+    .card {
+        width: 28vw;
+        /* Responsive width */
+        height: 28vw;
+        /* Square-ish cards */
+        max-width: 120px;
+        max-height: 120px;
+        font-size: 2.5rem;
+    }
+
+    /* 3. Bottom Section: Controls (Pause) */
+    .rightSidebar {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 5px;
+        order: 3;
+    }
+
+    .pauseBtn {
+        width: 100%;
+        max-width: 200px;
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+
+    /* Adjust Title Screen for Mobile */
+    .titleLogo {
+        font-size: 2.5rem;
+        padding: 0 20px;
+    }
+
+    .titleSubtitle {
+        font-size: 0.9rem;
+    }
+
+    .difficultyButtons {
+        grid-template-columns: 1fr;
+        /* Stack vertically */
+        gap: 10px;
+        width: 90%;
+    }
+
+    .difficultyBtn {
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Landscape Mobile (small height) */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    .gameWrapper {
+        padding: 5px;
+        gap: 10px;
+    }
+
+    .leftSidebar {
+        gap: 10px;
+    }
+
+    .statValue {
+        font-size: 1.8rem;
+    }
+
+    .card {
+        transform: scale(0.8);
     }
 }
