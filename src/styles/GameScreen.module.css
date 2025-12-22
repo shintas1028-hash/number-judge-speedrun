@@ -792,6 +792,38 @@
         padding: 15px;
         font-size: 1.2rem;
     }
+
+    /* Fix: Reduce Countdown Size */
+    .countdownNumber {
+        font-size: 5rem;
+        /* Start is longer than numbers */
+    }
+
+    .countdownRing {
+        width: 250px;
+        height: 250px;
+    }
+
+    /* Fix: Reduce Game Over Size */
+    .gameOver h2 {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .finalScore {
+        font-size: 2rem;
+    }
+
+    .gameOverButtons {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .startButton,
+    .backButton {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 /* Landscape Mobile (small height) */
