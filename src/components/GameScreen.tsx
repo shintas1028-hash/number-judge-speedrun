@@ -55,17 +55,12 @@ export const GameScreen: React.FC = () => {
         // Audio Managerの状態をStoreと同期
         const { options } = useGameStore.getState();
 
-        if (options.isBgmMuted) {
-            audioManager.setBGMVolume(0);
-        } else {
-            audioManager.setBGMVolume(options.bgmVolume / 5);
-        }
+        audioManager.setBgmMuted(options.isBgmMuted);
+        audioManager.setSfxMuted(options.isSfxMuted);
 
-        if (options.isSfxMuted) {
-            audioManager.setSFXVolume(0);
-        } else {
-            audioManager.setSFXVolume(options.sfxVolume / 5);
-        }
+        // 音量も一応設定
+        audioManager.setBGMVolume(options.bgmVolume / 5);
+        audioManager.setSFXVolume(options.sfxVolume / 5);
 
         if (!isPlaying && currentNumbers.length === 0) {
             audioManager.playBGM('title');

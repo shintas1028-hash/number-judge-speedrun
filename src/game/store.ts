@@ -77,16 +77,14 @@ export const useGameStore = create<GameStore>((set, get) => ({
     toggleBgmMute: () => {
         set((state) => {
             const newMuted = !state.options.isBgmMuted;
-            const volume = newMuted ? 0 : state.options.bgmVolume / 5;
-            audioManager.setBGMVolume(volume);
+            audioManager.setBgmMuted(newMuted);
             return { options: { ...state.options, isBgmMuted: newMuted } };
         });
     },
     toggleSfxMute: () => {
         set((state) => {
             const newMuted = !state.options.isSfxMuted;
-            const volume = newMuted ? 0 : state.options.sfxVolume / 5;
-            audioManager.setSFXVolume(volume);
+            audioManager.setSfxMuted(newMuted);
             return { options: { ...state.options, isSfxMuted: newMuted } };
         });
     },
