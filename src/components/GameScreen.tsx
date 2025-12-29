@@ -5,6 +5,7 @@ import { useGameStore } from '../game/store';
 import { audioManager } from '../game/audioManager';
 import { OptionsModal } from './OptionsModal';
 import { CreditsModal } from './CreditsModal';
+import { SoundToggle } from './SoundToggle'; // Import
 import { TEXT_RESOURCES } from '../game/constants';
 import styles from '../styles/GameScreen.module.css';
 
@@ -49,7 +50,23 @@ export const GameScreen: React.FC = () => {
     }, [isPlaying]);
 
     // 初回マウント時にタイトルBGMを再生
+    // 初回マウント時にタイトルBGMを再生
     useEffect(() => {
+        // Audio Managerの状態をStoreと同期
+        const { options } = useGameStore.getState();
+
+        if (options.isBgmMuted) {
+            audioManager.setBGMVolume(0);
+        } else {
+            audioManager.setBGMVolume(options.bgmVolume / 5);
+        }
+
+        if (options.isSfxMuted) {
+            audioManager.setSFXVolume(0);
+        } else {
+            audioManager.setSFXVolume(options.sfxVolume / 5);
+        }
+
         if (!isPlaying && currentNumbers.length === 0) {
             audioManager.playBGM('title');
         }
@@ -300,6 +317,9 @@ export const GameScreen: React.FC = () => {
 
     return (
         <div className={`${styles.container} ${shakeContainer ? styles['anim-shake'] : ''}`}>
+            {/* Persistent Sound Toggle */}
+            <SoundToggle />
+
             {showFlash === 'correct' && <div className={styles['anim-flash-correct']} />}
             {showFlash === 'wrong' && <div className={styles['anim-flash-wrong']} />}
 

@@ -37,8 +37,8 @@ export const DIFFICULTY_SETTINGS = {
 const DEFAULT_OPTIONS: GameOptions = {
     bgmVolume: 3,
     sfxVolume: 3,
-    isBgmMuted: false,
-    isSfxMuted: false,
+    isBgmMuted: true,
+    isSfxMuted: true,
     enableShake: true,
     enableFlash: true,
     language: 'ja',
@@ -90,6 +90,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
             return { options: { ...state.options, isSfxMuted: newMuted } };
         });
     },
+
     setEnableShake: (enable) => set((state) => ({ options: { ...state.options, enableShake: enable } })),
     setEnableFlash: (enable) => set((state) => ({ options: { ...state.options, enableFlash: enable } })),
     setLanguage: (lang) => set((state) => ({ options: { ...state.options, language: lang } })),

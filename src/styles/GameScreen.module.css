@@ -687,7 +687,7 @@
         padding: 5px;
         order: 1;
         /* First */
-        gap: 10px;
+        gap: 5px;
     }
 
     .statItem {
@@ -723,35 +723,35 @@
         /* Fill remaining space */
         aspect-ratio: auto;
         /* Remove fixed aspect ratio */
-        padding: 15px;
+        padding: 5px;
         margin: 0;
-        max-height: 65vh;
+        max-height: 70vh;
         /* Prevent it from pushing bottom elements off */
     }
 
     .conditionBox {
-        font-size: 1.5rem;
-        padding: 10px 20px;
-        margin-bottom: 15px;
-        width: 90%;
+        font-size: 1.25rem;
+        padding: 8px 15px;
+        margin-bottom: 10px;
+        width: 95%;
     }
 
     /* Cards Grid adjustment */
     .cardsContainer {
-        gap: 15px;
+        gap: 8px;
         width: 100%;
         height: auto;
         align-content: center;
     }
 
     .card {
-        width: 28vw;
-        /* Responsive width */
-        height: 28vw;
+        width: 26vw;
+        /* Responsive width for small screens */
+        height: 26vw;
         /* Square-ish cards */
-        max-width: 120px;
-        max-height: 120px;
-        font-size: 2.5rem;
+        max-width: 110px;
+        max-height: 110px;
+        font-size: 2rem;
     }
 
     /* 3. Bottom Section: Controls (Pause) */
@@ -773,12 +773,12 @@
 
     /* Adjust Title Screen for Mobile */
     .titleLogo {
-        font-size: 2.5rem;
-        padding: 0 20px;
+        font-size: clamp(2rem, 8vw, 3rem);
+        padding: 0 10px;
     }
 
     .titleSubtitle {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .difficultyButtons {
@@ -814,15 +814,31 @@
         font-size: 2rem;
     }
 
+
     .gameOverButtons {
         flex-direction: column;
-        width: 80%;
+        width: 90%;
+        gap: 10px;
     }
 
     .startButton,
     .backButton {
         width: 100%;
         box-sizing: border-box;
+    }
+}
+
+/* Small Mobile Override (e.g. Galaxy Fold, very narrow devices) */
+@media screen and (max-width: 360px) {
+    .card {
+        width: 28vw;
+        /* Slightly larger relative width on very narrow screens if room permits, or keep small */
+        /* Actually keep it tight */
+        width: 26vw;
+    }
+
+    .conditionBox {
+        font-size: 1rem;
     }
 }
 
