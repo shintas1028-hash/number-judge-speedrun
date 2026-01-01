@@ -22,6 +22,7 @@ interface GameStore extends GameState {
     setEnableShake: (enable: boolean) => void;
     setEnableFlash: (enable: boolean) => void;
     setLanguage: (lang: 'ja' | 'en') => void;
+    setSimResolution: (width: number, height: number) => void;
 }
 
 const INITIAL_TIME = 60;
@@ -42,6 +43,8 @@ const DEFAULT_OPTIONS: GameOptions = {
     enableShake: true,
     enableFlash: true,
     language: 'ja',
+    simWidth: 0,
+    simHeight: 0,
 };
 
 export const useGameStore = create<GameStore>((set, get) => ({
@@ -92,6 +95,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
     setEnableShake: (enable) => set((state) => ({ options: { ...state.options, enableShake: enable } })),
     setEnableFlash: (enable) => set((state) => ({ options: { ...state.options, enableFlash: enable } })),
     setLanguage: (lang) => set((state) => ({ options: { ...state.options, language: lang } })),
+    setSimResolution: (width: number, height: number) =>
+        set((state) => ({ options: { ...state.options, simWidth: width, simHeight: height } })),
 
     startGame: () => {
         const { difficulty } = get();

@@ -23,6 +23,8 @@ export interface GameOptions {
   enableShake: boolean;
   enableFlash: boolean;
   language: 'ja' | 'en';
+  simWidth: number;
+  simHeight: number;
 }
 
 export interface GameState {

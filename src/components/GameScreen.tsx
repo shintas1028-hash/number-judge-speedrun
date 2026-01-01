@@ -6,6 +6,7 @@ import { audioManager } from '../game/audioManager';
 import { OptionsModal } from './OptionsModal';
 import { CreditsModal } from './CreditsModal';
 import { SoundToggle } from './SoundToggle'; // Import
+import { DevResolutionPanel } from './DevResolutionPanel'; // New
 import { TEXT_RESOURCES } from '../game/constants';
 import styles from '../styles/GameScreen.module.css';
 
@@ -310,8 +311,18 @@ export const GameScreen: React.FC = () => {
         );
     }
 
+    const containerStyle: React.CSSProperties = {};
+    if (options.simWidth > 0) containerStyle.width = `${options.simWidth}px`;
+    if (options.simHeight > 0) containerStyle.height = `${options.simHeight}px`;
+
     return (
-        <div className={`${styles.container} ${shakeContainer ? styles['anim-shake'] : ''}`}>
+        <div
+            className={`${styles.container} ${shakeContainer ? styles['anim-shake'] : ''}`}
+            style={containerStyle}
+        >
+            {/* Resolution Adjustment Panel (Dev) */}
+            <DevResolutionPanel />
+
             {/* Persistent Sound Toggle */}
             <SoundToggle />
 
